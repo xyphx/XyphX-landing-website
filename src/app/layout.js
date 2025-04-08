@@ -15,7 +15,7 @@ export const metadata = {
   title: "XyphX",
   description: "The new perspective of the Tech",
   icons: {
-    icon: "/favicon.png",
+    icon: "/favicon.png", 
   },
 };
 
