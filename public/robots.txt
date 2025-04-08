@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xyphx.vercel.app/sitemap.xml
