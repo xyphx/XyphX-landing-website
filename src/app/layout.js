@@ -16,6 +16,9 @@ export const metadata = {
   description: "The new perspective of the Tech",
   icons: {
     icon: "/favicon.png", 
+  },  
+  verification: {
+    google: 'hNYNfAbHNfmqBJZK7C7ilLVslZ_AfdjepfdnQ1WCTm0',
   },
 };
 
