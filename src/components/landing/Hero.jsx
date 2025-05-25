@@ -1,13 +1,30 @@
+'use client';
 export default function Hero() {
         return (
-          <section className="w-full min-h-screen flex flex-col justify-center items-center text-center px-6 bg-gradient-to-r from-blue-100 to-blue-50">
-            <h1 className="text-5xl font-bold text-blue-800 mb-4">
-              Welcome to XyphX
-            </h1>
-            <p className="text-lg text-gray-600">
-              The new perspective of the Tech 🚀
-            </p>
-          </section>
+          <div
+            className="relative w-full h-screen overflow-hidden"
+            // style={{
+            //   background: "radial-gradient(circle, #2B0042, #000000)",
+            // }}
+          >
+            <video
+        className="absolute top-0 left-0 w-full h-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
+        <source src="/intro.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Content Over Video */}
+      <div className="relative z-10 flex items-center justify-center h-full">
+        <h1 className="text-white text-4xl font-bold">XyphX</h1>
+      </div>
+
+          </div>
+
         );
       }
       
