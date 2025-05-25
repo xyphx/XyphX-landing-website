@@ -1,12 +1,19 @@
 'use client';
-import Navbar from "@/components/landing/Navbar";
-import HeroSection from "@/components/landing/Hero";
+import { useState } from 'react';
+import Navbar from '../components/landing/Navbar';
+import About from '../components/landing/About';
+import Hero from '../components/landing/Hero';
 
-export default function Home() {
+export default function HomePage() {
+  const [showAbout, setShowAbout] = useState(false);
+
+  const toggleAbout = () => setShowAbout((prev) => !prev);
+
   return (
-    <main className="flex min-h-screen flex-col bg-gray-100">
-      <Navbar />
-      <HeroSection />
-    </main>
+    <div className="relative">
+      <Navbar showAbout={showAbout} toggleAbout={toggleAbout} />
+      {showAbout && <About />}
+      <Hero />
+    </div>
   );
 }

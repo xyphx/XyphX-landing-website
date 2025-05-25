@@ -1,11 +1,9 @@
 'use client';
+
 export default function Hero() {
         return (
           <div
             className="relative w-full h-screen overflow-hidden"
-            // style={{
-            //   background: "radial-gradient(circle, #2B0042, #000000)",
-            // }}
           >
             <video
         className="absolute top-0 left-0 w-full h-full object-cover"
