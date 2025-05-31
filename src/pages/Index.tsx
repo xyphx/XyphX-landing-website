@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Wrench, Brain, Rocket, Mail, Linkedin, ChevronDown } from 'lucide-react';
+import { ArrowRight, Wrench, Brain, Rocket, Mail, Linkedin, GithubIcon, ChevronDown } from 'lucide-react';
 
 const Index = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -58,7 +58,7 @@ const Index = () => {
               Engineering the Future of Tech
             </h2>
             <p className="text-xl mb-12 text-gray-300 max-w-2xl mx-auto">
-              Crafting Tomorrow's AI, Today
+              Crafting Tomorrow's Tech, Today
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button 
@@ -72,7 +72,7 @@ const Index = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-purple-500 text-purple-300 hover:bg-purple-500/10 px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
+                className="border-purple-500 text-purple-700 hover:text-white hover:bg-purple-500/10 px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
                 onClick={() => scrollToSection('contact')}
               >
                 Join the Journey
@@ -138,7 +138,7 @@ const Index = () => {
               {
                 icon: Brain,
                 title: "AI Research & Development",
-                description: "Cutting-edge AI research that pushes the boundaries of what's possible in machine learning and automation.",
+                description: "Cutting-edge AI research that pushes the boundaries of what's possible in machine learning.",
                 details: "Our R&D team explores neural networks, deep learning, and emerging AI technologies to solve complex problems."
               },
               {
@@ -174,7 +174,7 @@ const Index = () => {
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-purple-400/10 blur-3xl rounded-full"></div>
             <blockquote className="text-3xl md:text-4xl font-bold text-transparent bg-gradient-to-r from-purple-300 via-white to-purple-400 bg-clip-text relative z-10 leading-relaxed">
-              "We're not just building products; we're building the future of intelligence."
+              "We're not just building products; we're building the future of Technology."
             </blockquote>
           </div>
         </div>
@@ -198,15 +198,15 @@ const Index = () => {
                 },
                 {
                   phase: "Phase 2", 
-                  title: "Deepen AI R&D",
+                  title: "Deepen R&D",
                   icon: "🧪",
-                  description: "Investing heavily in AI research, building proprietary algorithms, and developing breakthrough technologies."
+                  description: "Investing heavily in research, building proprietary algorithms, and developing breakthrough technologies."
                 },
                 {
                   phase: "Phase 3",
-                  title: "Launch AI Products",
+                  title: "Launch Tech Products",
                   icon: "🛰️",
-                  description: "Releasing revolutionary AI products that will transform how businesses operate and people interact with technology."
+                  description: "Releasing revolutionary products that will transform how businesses operate and people interact with technology."
                 }
               ].map((item, index) => (
                 <div key={index} className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
@@ -242,18 +242,18 @@ const Index = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                name: "XyphX Intelligence Suite",
-                description: "Complete AI-powered business intelligence platform",
+                name: "Sell My Skills",
+                description: "Showcase your skills and connect with potential clients",
                 status: "Coming Soon"
               },
               {
-                name: "Neural Assistant Pro",
-                description: "Advanced AI assistant for enterprise automation",
+                name: "XyphX OS",
+                description: "The new way to experience linux for windows users",
                 status: "In Development"
               },
               {
-                name: "Quantum Analytics",
-                description: "Next-gen predictive analytics powered by quantum computing",
+                name: "XyphX Agent",
+                description: "An AI assistant that helps you with your daily tasks",
                 status: "Research Phase"
               }
             ].map((product, index) => (
@@ -284,7 +284,7 @@ const Index = () => {
             <Card className="bg-black/70 border-purple-500/50 backdrop-blur-sm relative z-10">
               <CardContent className="p-12">
                 <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-gradient-to-r from-purple-300 to-purple-500 bg-clip-text">
-                  Ready to Shape the Future?
+                  Ready to Engineer the Future?
                 </h2>
                 <p className="text-lg text-gray-300 mb-8">
                   Join our team of innovators, AI researchers, and visionary developers as we build the next generation of intelligent systems.
@@ -306,13 +306,13 @@ const Index = () => {
       <footer id="contact" className="relative z-10 py-12 px-4 border-t border-purple-500/30">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8 items-center">
-            <div className="text-center md:text-left">
+            <div className="text-center md:text-left justify-center items-center">
               <img 
                 src="/logo_dark.png" 
                 alt="XyphX Logo" 
                 className="w-16 h-16 mx-auto md:mx-0 mb-4"
               />
-              <p className="text-gray-400">Building the future of intelligence</p>
+              <p className="text-gray-400">Engineering the Future of Tech</p>
             </div>
             
             <div className="text-center">
@@ -326,15 +326,20 @@ const Index = () => {
             <div className="text-center md:text-right">
               <h3 className="text-lg font-semibold mb-4 text-purple-300">Connect With Us</h3>
               <div className="flex justify-center md:justify-end gap-4">
-                <a href="#" className="p-3 bg-purple-600/20 rounded-full hover:bg-purple-600/40 transition-all duration-300 hover:scale-110">
+                <a href="https://www.linkedin.com/company/xyphx" target='_blank' className="p-3 bg-purple-600/20 rounded-full hover:bg-purple-600/40 transition-all duration-300 hover:scale-110 gap-2">
                   <Linkedin className="h-5 w-5 text-purple-400" />
+                  
+                </a>
+                <a href="https://github.com/xyphx" target='_blank' className="p-3 bg-purple-600/20 rounded-full hover:bg-purple-600/40 transition-all duration-300 hover:scale-110 gap-2">
+                  <GithubIcon className="h-5 w-5 text-purple-400" />
+                  
                 </a>
               </div>
             </div>
           </div>
           
           <div className="border-t border-purple-500/20 mt-8 pt-8 text-center text-gray-500">
-            <p>&copy; 2024 XyphX. All rights reserved. Crafting tomorrow's AI, today.</p>
+            <p>&copy; 2025 XyphX</p>
           </div>
         </div>
       </footer>
