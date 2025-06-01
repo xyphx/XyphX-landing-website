@@ -2,12 +2,24 @@ import React from 'react'
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, Wrench, Brain, Rocket, Mail, Linkedin, GithubIcon, ChevronDown } from 'lucide-react';
+import { motion } from "framer-motion";
+import {useIsMobile} from "@/hooks/use-mobile"
+
 
 export default function Join() {
+  const isMobile = useIsMobile();
+  
+    const fadeInUp = {
+      initial: { opacity: 0, y: 70 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true, amount: isMobile ? 0.3 :0.8 },
+      transition: { duration: 1.5 },
+    };
+
   return (
     <div>
       <section className="relative z-10 py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
+        <motion.div {...fadeInUp} className="max-w-4xl mx-auto text-center">
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-purple-400/20 blur-3xl rounded-3xl"></div>
             <Card className="bg-black/70 border-purple-500/50 backdrop-blur-sm relative z-10">
@@ -28,7 +40,7 @@ export default function Join() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </motion.div>
       </section>
     </div>
   )

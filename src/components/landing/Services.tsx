@@ -2,11 +2,25 @@ import React from 'react'
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, Wrench, Brain, Rocket, Mail, Linkedin, GithubIcon, ChevronDown } from 'lucide-react';
+import { motion } from "framer-motion";
+import {useIsMobile} from "@/hooks/use-mobile"
+
 export default function Services() {
+
+  
+     const isMobile = useIsMobile();
+  
+    const fadeInUp = {
+      initial: { opacity: 0, y: 70 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true, amount: isMobile ? 0.3 :0.8 },
+      transition: { duration: 1.5 },
+    };
+
   return (
     <div>
       <section id="services" className="relative z-10 py-20 px-4">
-        <div className="max-w-7xl mx-auto">
+        <motion.div {...fadeInUp} className="max-w-7xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
             What We Do
           </h2>
@@ -31,6 +45,7 @@ export default function Services() {
                 details: "Building the next generation of intelligent systems that learn, adapt, and evolve with user needs."
               }
             ].map((service, index) => (
+              <motion.div {...fadeInUp}>
               <Card key={index} className="bg-black/50 border-purple-500/30 hover:border-purple-400 transition-all duration-300 group hover:scale-105 backdrop-blur-sm">
                 <CardContent className="p-8 text-center">
                   <div className="relative mb-6">
@@ -46,9 +61,10 @@ export default function Services() {
                   </div>
                 </CardContent>
               </Card>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
     </div>
   )
