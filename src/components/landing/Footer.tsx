@@ -2,12 +2,25 @@ import React from 'react'
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, Wrench, Brain, Rocket, Mail, Linkedin, GithubIcon, ChevronDown } from 'lucide-react';
+import { motion } from "framer-motion";
+import useIsMobile from '@/hooks/use-mobile';
+
 
 export default function Footer() {
+
+  const isMobile = useIsMobile();
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 70 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: isMobile? 0.3 : 0.5 },
+    transition: { duration: 1.5 },
+  };
+
   return (
     <div>
       <footer id="contact" className="relative z-10 py-12 px-4 border-t border-purple-500/30">
-        <div className="max-w-7xl mx-auto">
+        <motion.div {...fadeInUp} className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8 items-center">
             <div className="text-center md:text-left justify-center items-center">
               <img 
@@ -44,7 +57,7 @@ export default function Footer() {
           <div className="border-t border-purple-500/20 mt-8 pt-8 text-center text-gray-500">
             <p>&copy; 2025 XyphX</p>
           </div>
-        </div>
+        </motion.div>
       </footer>
     </div>
   )
