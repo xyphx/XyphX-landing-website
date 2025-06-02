@@ -36,7 +36,7 @@ export default function Hero() {
          };
   return (
     <div>
-      <section className="relative z-10 min-h-screen flex items-center justify-center px-4">
+      <section className="relative z-10 min-h-screen flex items-center justify-center px-4 ">
         <div className="text-center max-w-6xl mx-auto">
           <motion.div {...fadeInUp}>
             <div

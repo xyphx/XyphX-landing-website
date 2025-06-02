@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import {getFirestore} from "firebase/firestore"
+
 
 declare global {
   interface ImportMetaEnv {
@@ -38,6 +40,7 @@ const firebaseConfig: FirebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 const analytics = typeof window !== "undefined" ? getAnalytics(app) : null;
 
-export { app, analytics };
+export { app, analytics,db };
