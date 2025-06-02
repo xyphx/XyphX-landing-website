@@ -1,20 +1,24 @@
-import React from 'react'
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Wrench, Brain, Rocket, Mail, Linkedin, GithubIcon, ChevronDown } from 'lucide-react';
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import {useIsMobile} from "@/hooks/use-mobile"
-
+import { useIsMobile } from "@/hooks/use-mobile";
+import TechInterestFormPopup from "../landing/Apply";
 
 export default function Join() {
   const isMobile = useIsMobile();
-  
-    const fadeInUp = {
-      initial: { opacity: 0, y: 70 },
-      whileInView: { opacity: 1, y: 0 },
-      viewport: { once: true, amount: isMobile ? 0.3 :0.8 },
-      transition: { duration: 1.5 },
-    };
+  const [isPopupOpen, setPopupOpen] = useState(false);
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 70 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: isMobile ? 0.3 : 0.8 },
+    transition: { duration: 1.5 },
+  };
+
+  const openPopup = () => setPopupOpen(true);
+  const closePopup = () => setPopupOpen(false);
 
   return (
     <div>
@@ -28,11 +32,13 @@ export default function Join() {
                   Ready to Engineer the Future?
                 </h2>
                 <p className="text-lg text-gray-300 mb-8">
-                  Join our team of innovators, AI researchers, and visionary developers as we build the next generation of intelligent systems.
+                  Join our team of innovators, AI researchers, and visionary developers as we build the next generation of intelligent
+                  systems.
                 </p>
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
+                  onClick={openPopup}
                 >
                   Apply Now
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -42,6 +48,8 @@ export default function Join() {
           </div>
         </motion.div>
       </section>
+
+      <TechInterestFormPopup isOpen={isPopupOpen} onClose={closePopup} />
     </div>
-  )
+  );
 }
