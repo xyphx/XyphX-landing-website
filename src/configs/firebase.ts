@@ -14,7 +14,6 @@ declare global {
     VITE_FIREBASE_MEASUREMENT_ID?: string;
   }
   interface ImportMeta {
-    env: ImportMetaEnv;
   }
 }
 
