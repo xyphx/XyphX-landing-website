@@ -151,7 +151,7 @@ export default function TechInterestFormPopup({ isOpen, onClose }: TechInterestF
                         reset();
                         onClose();
                       }}
-                      className="border border-purple-600 hover:bg-purple-600 text-white px-6 py-2 rounded transition-all duration-200"
+                      className="border-2 border-purple-600 bg-gray-900 hover:bg-purple-600 text-white px-6 py-2 rounded transition-all duration-200"
                     >
                       Cancel
                     </Button>
