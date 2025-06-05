@@ -31,22 +31,21 @@ export default function Services() {
                 title: "Custom Software Solutions",
                 description: "Tailored software development that transforms your business processes and drives digital innovation.",
                 details: "From web applications to enterprise solutions, we build scalable software that grows with your business."
-              },
-              {
+              },{
                 icon: Brain,
-                title: "AI Research & Development",
-                description: "Cutting-edge AI research that pushes the boundaries of what's possible in machine learning.",
-                details: "Our R&D team explores neural networks, deep learning, and emerging AI technologies to solve complex problems."
-              },
-              {
-                icon: Rocket,
-                title: "Next-Gen AI Product Development",
-                description: "Revolutionary AI products that will reshape industries and redefine human-computer interaction.",
-                details: "Building the next generation of intelligent systems that learn, adapt, and evolve with user needs."
-              }
+                title: "Technology Research & Development",
+                description: "Innovative technology research driving the future of software solutions.",
+                details: "Our R&D team focuses on exploring new technologies, improving systems, and creating cutting-edge solutions to solve complex technical challenges."
+              },{
+              icon: Rocket,
+              title: "Next-Gen Tech Product Development",
+              description: "Innovative technology solutions addressing real-world challenges across industries.",
+              details: "Developing scalable systems that tackle problems like resource optimization, connectivity, and automation to improve daily lives and business efficiency."
+            }
+
             ].map((service, index) => (
               <motion.div {...fadeInUp}>
-              <Card key={index} className="bg-black/50 border-purple-500/30 hover:border-purple-400 transition-all duration-300 group hover:scale-105 backdrop-blur-sm">
+              <Card key={index} className="h-96 bg-black/50 border-purple-500/30 hover:border-purple-400 transition-all duration-300 group hover:scale-105 backdrop-blur-sm">
                 <CardContent className="p-8 text-center">
                   <div className="relative mb-6">
                     <div className="w-20 h-20 mx-auto bg-gradient-to-r from-purple-600 to-purple-400 rounded-full flex items-center justify-center group-hover:animate-pulse">

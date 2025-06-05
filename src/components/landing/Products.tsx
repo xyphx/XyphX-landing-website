@@ -67,8 +67,8 @@ const fadeInUp = {
                 .map((product, index) => (
                   <a href={product.link} target="_blank" rel="noopener noreferrer" key={product.id || index}>
                     <motion.div {...fadeInUp}>
-                      <Card className="bg-black/50 border-purple-500/30 hover:border-purple-400 transition-all duration-300 group hover:scale-105 backdrop-blur-sm">
-                        <CardContent className="p-6">
+                      <Card className="h-64 bg-black/50 border-purple-500/30 hover:border-purple-400 transition-all duration-300 group hover:scale-105 backdrop-blur-sm">
+                        <CardContent className="p-6 ">
                           <div className="relative mb-4">
                             <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-purple-400 rounded-lg flex items-center justify-center group-hover:animate-pulse">
                               <Brain className="h-8 w-8 text-white" />

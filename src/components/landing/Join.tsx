@@ -32,7 +32,7 @@ export default function Join() {
                   Ready to Engineer the Future?
                 </h2>
                 <p className="text-lg text-gray-300 mb-8">
-                  Join our team of innovators, AI researchers, and visionary developers as we build the next generation of intelligent
+                  Join our team of innovators, tech researchers, and visionary developers as we build the next generation of intelligent
                   systems.
                 </p>
                 <Button

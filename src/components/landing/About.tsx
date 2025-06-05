@@ -30,7 +30,7 @@ export default function About() {
               <div className="space-y-6">
                 <p className="text-lg text-gray-300 leading-relaxed">
                   XyphX is a budding, service-based tech company with a bold
-                  ambition — to transform into a revolutionary AI product
+                  ambition — to transform into a revolutionary tech product
                   powerhouse. We're building AI-driven solutions that are smart,
                   futuristic, and ready to redefine industries.
                 </p>
