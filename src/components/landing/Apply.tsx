@@ -10,9 +10,9 @@ interface TechInterestFormPopupProps {
 }
 
 interface FormData {
-  userName: string;
-  orgName: string;
-  techInterest: string;
+  name: string;
+  org_name: string;
+  tech_interest: string;
   phone: string;
   email: string;
   portfolio?: string;
@@ -35,32 +35,56 @@ export default function TechInterestFormPopup({ isOpen, onClose }: TechInterestF
     reset,
   } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => {
-    alert("Form submitted:\n" + JSON.stringify(data, null, 2));
-    reset();
-    onClose();
+  const onSubmit = async (data: FormData) => {
+    // alert("Form submitted:\n" + JSON.stringify(data, null, 2));
+    // reset();
+    // onClose();
+
+    try{
+         const response = await fetch(`${process.env.API_BASE_URL}/apply`,{
+           method:"POST",
+           headers: {
+            "Content-Type" : "application/json",
+           },
+           body: JSON.stringify(data)
+         });
+
+         const result = await response.json();
+
+         if(response.ok){
+           alert("Application submitted successfully!");
+           reset();
+           onClose();
+         }else{
+          alert(result.error || "Something went wrong. Please try again.");
+         }
+
+    } catch(error){
+      console.error("Submission error:", error);
+      alert("Network error. Please try again later.");
+    }  
   };
 
   const formFields = [
     {
       label: "Name*",
-      name: "userName",
+      name: "name",
       type: "text",
-      error: errors.userName,
+      error: errors.name,
       validation: { required: "Required" },
     },
     {
       label: "Organization / Club / College Name*",
-      name: "orgName",
+      name: "org_name",
       type: "text",
-      error: errors.orgName,
+      error: errors.org_name,
       validation: { required: "Required" },
     },
     {
       label: "Interested Technology*",
-      name: "techInterest",
+      name: "tech_interest",
       type: "text",
-      error: errors.techInterest,
+      error: errors.tech_interest,
       validation: { required: "Required" },
     },
     {
