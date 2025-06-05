@@ -1,6 +1,8 @@
-import React from 'react';
+import { updatePortfolioVisitors } from '@/utils/visitors';
+import React, { useEffect } from 'react';
 
 const SplashScreen: React.FC = () => {
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black text-white overflow-hidden">
       {/* Purple animated grid */}
