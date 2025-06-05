@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
+import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { toast } from "@/components/ui/use-toast";   // shadcn toast ⬅️
 
 interface TechInterestFormPopupProps {
   isOpen: boolean;
@@ -27,7 +29,10 @@ const fieldVariants = {
   }),
 };
 
-export default function TechInterestFormPopup({ isOpen, onClose }: TechInterestFormPopupProps) {
+export default function TechInterestFormPopup({
+  isOpen,
+  onClose,
+}: TechInterestFormPopupProps) {
   const {
     register,
     handleSubmit,
@@ -35,36 +40,53 @@ export default function TechInterestFormPopup({ isOpen, onClose }: TechInterestF
     reset,
   } = useForm<FormData>();
 
+  const [loading, setLoading] = useState(false);
+
   const onSubmit = async (data: FormData) => {
-    // alert("Form submitted:\n" + JSON.stringify(data, null, 2));
-    // reset();
-    // onClose();
+    setLoading(true);
 
-    try{
-         const response = await fetch(`${process.env.API_BASE_URL}/apply`,{
-           method:"POST",
-           headers: {
-            "Content-Type" : "application/json",
-           },
-           body: JSON.stringify(data)
-         });
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/apply/`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
 
-         const result = await response.json();
+      const result = await response.json();
 
-         if(response.ok){
-           alert("Application submitted successfully!");
-           reset();
-           onClose();
-         }else{
-          alert(result.error || "Something went wrong. Please try again.");
-         }
-
-    } catch(error){
+      if (response.ok) {
+        toast({
+          title: "Application submitted",
+          description: "🎉 We’ll get back to you soon.",
+          className: "border border-purple-600 bg-neutral-900 text-white",
+          duration: 5000, 
+        });
+        reset();
+        onClose();
+      } else {
+       toast({
+          variant: "destructive",
+          title: "Submission failed",
+          description: result.error || "Something went wrong. Try again.",
+          className: "border border-purple-600 bg-neutral-900 text-white",
+        });
+      }
+    } catch (error) {
       console.error("Submission error:", error);
-      alert("Network error. Please try again later.");
-    }  
+      toast({
+        variant: "destructive",
+        title: "Network error",
+        description: "Please check your connection and try again.",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
+  /* ------------------------- field config ------------------------- */
   const formFields = [
     {
       label: "Name*",
@@ -120,12 +142,14 @@ export default function TechInterestFormPopup({ isOpen, onClose }: TechInterestF
       error: errors.portfolio,
       validation: {
         pattern: {
-          value: /^(https?:\/\/)?([\w\d-]+\.)+\w{2,}(\/[\w\d-./?%&=]*)?$/,
+          value:
+            /^(https?:\/\/)?([\w\d-]+\.)+\w{2,}(\/[\w\d-./?%&=]*)?$/,
           message: "Invalid URL",
         },
       },
     },
-  ];
+  ] as const;
+  /* --------------------------------------------------------------- */
 
   return (
     <AnimatePresence>
@@ -151,42 +175,75 @@ export default function TechInterestFormPopup({ isOpen, onClose }: TechInterestF
                   Apply to join XyphX
                 </h3>
 
-                <form onSubmit={handleSubmit(onSubmit)} className=" text-white">
-                  {formFields.map((field, i) => (
-                    <motion.div key={field.name} custom={i} initial="hidden" animate="visible" variants={fieldVariants}>
-                      <label className="block mb-1 text-purple-300">{field.label}</label>
-                      <input
-                        {...register(field.name as keyof FormData, field.validation)}
-                        type={field.type}
-                        className={`w-full p-3 rounded-md bg-purple-900 bg-opacity-30 border focus:outline-none focus:ring-2 focus:ring-purple-500 ${
-                          field.error ? "border-red-500" : "border-purple-700"
-                        }`}
-                      />
-                      {field.error && (
-                        <p className="text-red-500 mt-1 text-sm">{field.error.message}</p>
-                      )}
-                    </motion.div>
-                  ))}
-
-                  <div className="flex justify-between items-center mt-6">
-                    <Button
-                      variant="secondary"
-                      onClick={() => {
-                        reset();
-                        onClose();
-                      }}
-                      className="border-2 border-purple-600 bg-gray-900 hover:bg-purple-600 text-white px-6 py-2 rounded transition-all duration-200"
-                    >
-                      Cancel
-                    </Button>
-                    <Button
-                      type="submit"
-                      className="bg-gradient-to-r from-purple-700 to-purple-600 hover:from-purple-800 hover:to-purple-700 text-white px-8 py-2 rounded transition-all duration-200"
-                    >
-                      Submit
-                    </Button>
+                {/* -------- loading spinner overlay -------- */}
+                {loading ? (
+                  <div className="flex flex-col items-center justify-center py-16">
+                    <p className="text-purple-300 mb-4">
+                      Submitting your application...
+                      </p>
+                    <Loader2 className="h-10 w-10 animate-spin text-purple-400" />
                   </div>
-                </form>
+                ) : (
+                  /* -------- actual form -------- */
+                  <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="text-white"
+                  >
+                    {formFields.map((field, i) => (
+                      <motion.div
+                        key={field.name}
+                        custom={i}
+                        initial="hidden"
+                        animate="visible"
+                        variants={fieldVariants}
+                      >
+                        <label className="block mb-1 text-purple-300">
+                          {field.label}
+                        </label>
+                        <input
+                          {...register(
+                            field.name as keyof FormData,
+                            field.validation
+                          )}
+                          type={field.type}
+                          disabled={loading}
+                          className={`w-full p-3 rounded-md bg-purple-900 bg-opacity-30 border focus:outline-none focus:ring-2 focus:ring-purple-500 ${
+                            field.error
+                              ? "border-red-500"
+                              : "border-purple-700"
+                          }`}
+                        />
+                        {field.error && (
+                          <p className="text-red-500 mt-1 text-sm">
+                            {field.error.message}
+                          </p>
+                        )}
+                      </motion.div>
+                    ))}
+
+                    <div className="flex justify-between items-center mt-6">
+                      <Button
+                        type="button"
+                        variant="secondary"
+                        disabled={loading}
+                        onClick={() => {
+                          reset();
+                          onClose();
+                        }}
+                        className="border-2 border-purple-600 bg-gray-900 hover:bg-purple-600 text-white px-6 py-2 rounded transition-all duration-200"
+                      >
+                        Cancel
+                      </Button>
+                      <Button
+                        type="submit"
+                        disabled={loading}
+                        className="bg-gradient-to-r from-purple-700 to-purple-600 hover:from-purple-800 hover:to-purple-700 text-white px-8 py-2 rounded transition-all duration-200"
+                      >
+                        Submit
+                      </Button>
+                    </div>
+                  </form>
+                )}
               </CardContent>
             </Card>
           </motion.div>
